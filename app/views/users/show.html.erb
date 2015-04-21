@@ -1,0 +1,6 @@
+<%= link_to "Logout", logout_path, method: :delete %>
+
+<h1>Welcome, <%= current_user.username %>!</h1>
+
+
+<%= link_to "Create a new song!", new_song_path %>

@@ -1,0 +1,10 @@
+<%= form_for(@song) do |f| %>
+  <p>Title:</p>
+  <p><%= f.text_field :title %></p>
+  <p>Artist:</p>
+  <p><%= f.text_field :artist %></p>
+  <%= f.button %>
+<% end %>
+
+<br></br>
+<%= link_to "Back Home", songs_path %> 
