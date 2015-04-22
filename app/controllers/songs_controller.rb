@@ -1,12 +1,12 @@
 class SongsController < ApplicationController
   def index
+    @songs = current_user.songs.all
     session[:hit_counter] ||= 0
     session[:hit_counter] += 1
-    @songs = Song.all
   end
 
   def show
-    @song = Song.find(params[:id])
+    @song = current_user.songs.find(params[:id])
   end
 
   def new
@@ -14,22 +14,24 @@ class SongsController < ApplicationController
   end
 
   def create
-    flash[:notice] = "Song successfully created"
-    @song = Song.new(song_params)
+    @song = current_user.songs.new(song_params)
     if @song.save
-      redirect_to song_path(@song) #or just song
+      flash[:success] = "Song was successfully created!"
+      # redirect to the song path with the song id (pass in the song)
+      redirect_to user_path(current_user)
     else
-      flash[:errors] = @song.errors.full_messages.join(', ')
+      # song hasn't been saved in database, go back to the form
+      flash[:error] = @song.errors.full_messages.join(', ')
       render :new
     end
   end
 
   def edit
-    @song = Song.find(params[:id])
+    @song = current_user.songs.find(params[:id])
   end
 
   def update
-    @song = Song.find(params[:id])
+    @song = current_user.songs.find(params[:id])
     if @song.update(song_params)
       redirect_to song_path(@song)
     else
@@ -38,7 +40,7 @@ class SongsController < ApplicationController
   end
 
   def destroy
-    @song = Song.find(params[:id])
+    @song = current_user.songs.find(params[:id])
     @song.destroy
     redirect_to songs_path
   end
