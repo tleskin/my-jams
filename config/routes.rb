@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'users#new'
+
   resources :songs
   resources :users, only: [:new, :create, :show]
 

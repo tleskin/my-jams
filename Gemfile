@@ -12,7 +12,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt'
 
 
+gem 'autoprefixer-rails'
+gem 'bootstrap-sass'
+
+
 group :development, :test do
+  gem 'better_errors'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
