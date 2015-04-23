@@ -33,6 +33,7 @@ class SongsController < ApplicationController
 
   def edit
     @song = current_user.songs.find(params[:id])
+    @tags = Tag.all
   end
 
   def update
