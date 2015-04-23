@@ -3,7 +3,9 @@
   <p><%= f.text_field :title %></p>
   <p>Artist:</p>
   <p><%= f.text_field :artist %></p>
+     <%= f.collection_check_boxes(:tag_ids, @tags, :id, :label) %>
   <%= f.button %>
+
 <% end %>
 
 <br></br>

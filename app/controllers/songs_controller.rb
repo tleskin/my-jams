@@ -10,12 +10,17 @@ class SongsController < ApplicationController
   end
 
   def new
-    @song = Song.new
+    @tags = Tag.all
+    @song = current_user.songs.new
   end
 
   def create
     @song = current_user.songs.new(song_params)
     if @song.save
+      tags = params[:song][:tag_ids].reject(&:empty?)
+      tags.each do |id|
+        @song.tags << Tag.find(id)
+      end
       flash[:success] = "Song was successfully created!"
       # redirect to the song path with the song id (pass in the song)
       redirect_to user_path(current_user)
@@ -42,12 +47,13 @@ class SongsController < ApplicationController
   def destroy
     @song = current_user.songs.find(params[:id])
     @song.destroy
-    redirect_to songs_path
+    redirect_to user_path(current_user)
   end
 
   private
 
   def song_params
-    params.require(:song).permit(:title, :artist)
+    params.require(:song).permit(:title, :artist, :tag_ids)
   end
+
 end

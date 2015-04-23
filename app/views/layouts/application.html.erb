@@ -23,16 +23,18 @@
         </button>
 
         <% if current_user  %>
-          <%= link_to "Tom's Jams", user_path(current_user), class: "navbar-brand" %>
+          <h1><%= link_to "Tom's Jams", user_path(current_user), class: "navbar-brand" %></h1>
         <% else %>
-          <%= link_to "Tom's Jams", root_path, class: "navbar-brand" %>
+          <h1><%= link_to "Tom's Jams", root_path, class: "navbar-brand" %></h1>
         <% end %>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
+          <% if current_user  %>
           <li class="active"> <%= link_to "Add Song", new_song_path %></li>
+          <% end %>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

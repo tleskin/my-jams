@@ -15,7 +15,8 @@ RSpec.describe "adding a song to user dashboard" do
     click_button "Login"
 
     expect(page).to have_content("Welcome, ManOfSteel")
-    click_link_or_button "Create a new song"
+
+    click_link_or_button "Add Song"
     fill_in "song[title]", with: "Juicy"
     fill_in "song[artist]", with: "Biggie"
 
