@@ -1,6 +1,11 @@
 body{
   padding-top: 0px;
-  background: url('wallpaper.jpg');
+  background: url('saves_the_day.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
 
 }
 
