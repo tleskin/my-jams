@@ -26,3 +26,8 @@ group :development, :test do
   gem 'capybara'
   gem 'minitest-emoji'
 end
+
+
+group :production do
+  gem 'pg'
+end

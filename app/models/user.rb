@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   enum role: %w(default admin)
 
-  def admin?
-    role == "admin"
-  end
+  # def admin?
+  #   role == "admin"
+  # end
 end
