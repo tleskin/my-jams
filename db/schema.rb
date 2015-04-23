@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422200517) do
+ActiveRecord::Schema.define(version: 20150423171127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "song_tag", force: :cascade do |t|
+  create_table "song_tags", force: :cascade do |t|
     t.integer "song_id"
     t.integer "tag_id"
   end
 
-  add_index "song_tag", ["song_id"], name: "index_song_tag_on_song_id", using: :btree
-  add_index "song_tag", ["tag_id"], name: "index_song_tag_on_tag_id", using: :btree
+  add_index "song_tags", ["song_id"], name: "index_song_tags_on_song_id", using: :btree
+  add_index "song_tags", ["tag_id"], name: "index_song_tags_on_tag_id", using: :btree
 
   create_table "songs", force: :cascade do |t|
     t.text     "title"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20150422200517) do
     t.integer  "role",            default: 0
   end
 
-  add_foreign_key "song_tag", "songs"
-  add_foreign_key "song_tag", "tags"
+  add_foreign_key "song_tags", "songs"
+  add_foreign_key "song_tags", "tags"
   add_foreign_key "songs", "users"
 end
