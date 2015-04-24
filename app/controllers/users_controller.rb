@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 
 		if @user.save
 			session[:user_id] = @user.id
+			UserNotifier.send_signup_email(@user).deliver
 			redirect_to @user # user_path(@user)
 		else
 			flash[:errors] = @user.errors.full_messages.join(', ')
@@ -24,6 +25,7 @@ class UsersController < ApplicationController
 	def user_params
 		params.require(:user).permit(:first_name,
 																 :last_name,
+																 :email,
 																 :username,
 																 :password,
 																 :password_confirmation)
